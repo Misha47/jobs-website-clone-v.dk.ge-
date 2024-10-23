@@ -1,0 +1,42 @@
+<div class="search-wrap d-flex align-items-end justify-content-center gap-2 my-5">
+    <div class="section-wrap">
+        <h6>რას ეძებთ?</h6>
+        <input type="text" [(ngModel)]="keywordQuery" class="border border-1 rounded-3" placeholder="პოზიცია, კომპანია">
+    </div>
+    <div class="section-wrap">
+        <h6>სად?</h6>
+        <!-- <div class="dropdown">
+            <input class="dropdown-toggle border border-1 rounded-3" placeholder="ადგილმდებარეობა" type="text" data-bs-toggle="dropdown" aria-expanded="false">
+            <ul class="dropdown-menu w-100 rounded-3">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div> -->
+        <select class="border border-1 rounded-3 px-2" (input)="selectedOptionQuery($event)">
+            <option value="" disabled selected hidden>ადგილმდებარეობა</option>
+            <option *ngFor="let region of regionData" [value]="region.id">{{region.text}}</option>
+        </select>
+
+    </div>
+    <div class="section-wrap">
+        <h6>შემოსავალი</h6>
+        <div class="dropdown">
+            <button class="dropdown-toggle btn rounded-3 border border-1 px-3" data-bs-toggle="dropdown" aria-expanded="false">შემოსავალი</button>
+            <div class="dropdown-menu mt-2">
+                <div class="d-flex gap-2 p-3">
+                    <div class="dropdown-item">
+                        <input [(ngModel)]="minPriceQuery" type="number" class="border border-1 rounded-3" placeholder="თანხა -დან">
+                    </div>
+                    <div class="dropdown-item">
+                        <input [(ngModel)]="maxPriceQuery" type="number" class="border border-1 rounded-3" placeholder="თანხა -მდე">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-wrap button-wrap d-flex align-items-end gap-2">
+        <a href="search?page=1&searchKeyword={{keywordQuery}}&region={{regionQuery}}&minPrice={{minPriceQuery}}&maxPrice={{maxPriceQuery}}" class="d-flex align-items-center border-0 rounded-3 btn btn-warning"><span>ძებნა</span></a>
+        <a href="search?page=1&searchKeyword=&region=&minPrice=&maxPrice=" class="d-flex align-items-center px-4 border-0 rounded-3 btn btn-primary"><span>ყველა ვაკანსია</span></a>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+input, a, select, option, .dropdown-toggle{
+    height: 50px;
+}
+
+input{
+    font-size: medium;
+    padding-left: 10px;
+}
+
+.search-wrap{
+    flex-direction: row;
+}
+
+@media screen and (max-width: 865px){
+    .search-wrap{
+        flex-direction: column;
+        align-items: center !important;
+        margin-inline: 10px;
+    }
+
+    .section-wrap{
+        width: 100%;
+    }
+    .button-wrap{
+        flex-direction: column;
+    }
+    input, a, select, option, .dropdown-toggle{
+        width: 100%;
+    }
+    select:focus{
+        width: auto;
+    }
+}

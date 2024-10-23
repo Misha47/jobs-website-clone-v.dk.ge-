@@ -1,0 +1,69 @@
+    <div class="card mx-auto shadow-sm border border-1 my-5" *ngIf="job">
+        <div class="company">
+            <img [src]="job.CompanyDetail.logo" class="company-img">
+            <div>
+                <h6 class="title">{{job.PositionDetail.text}}</h6>
+                <p class="m-0">{{job.IndustryDetail.text}}</p>
+                <p class="m-0 text-primary">{{job.CompanyDetail.name}}</p>
+                <p class="detail-text"><i class="fa-solid fa-location-dot"></i>{{job.VacancyLocation.name}}</p>
+            </div>
+            <a *ngIf="job.CompanyDetail.website" href="{{job.CompanyDetail.website}}" target="_blank"><i class="fa-solid fa-globe"></i></a>
+        </div>
+        <div class="detail-wrap">
+            <div class="detail-left">
+                <h6>სამუშაო გრაფიკი</h6>
+                <p>{{job.WorkScheduleList.text}}</p>
+                <h6>ანაზღაურება</h6>
+            </div>
+            <div class="experience">
+                <h6>გამოცდილება</h6>
+                <p *ngIf="job.work_experience === 3">საშუალო დონე</p>
+                <p *ngIf="job.work_experience === 1">გამოცდილების გარეშე</p>
+                <p *ngIf="job.work_experience === 4">პროფესიონალი</p>
+                <h6 *ngIf="job.min_amount">საშუალო ხელფასი</h6>
+                <h6 *ngIf="job.fixed_amount">ფიქსირებული {{(job.max_bonus || job.min_bonus ? 'ბონუსი' : 'ხელფასი')}}</h6>
+                <p class="detail-text" *ngIf="job.min_amount">{{job.min_amount +" - "+ job.max_amount}} ₾</p>
+                <p class="detail-text" *ngIf="job.fixed_amount">{{job.fixed_amount}} ₾</p>
+            </div>
+        </div>
+        <ul class="nav nav-pills mb-3 gap-2" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-vacancy-tab" data-bs-toggle="pill" data-bs-target="#vacancy-main" type="button" role="tab" aria-controls="pills-home" aria-selected="true">ვაკანსია</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-vacancy-info-tab" data-bs-toggle="pill" data-bs-target="#vacancy-info" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">კომპანიის შესახებ</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+
+            <div class="tab-pane fade show active" id="vacancy-main" role="tabpanel" aria-labelledby="pills-vacancy-tab">
+                <div  *ngIf="job.what_to_do">
+                    <h5>რა უნდა გააკეთო?</h5>
+                    <p *ngFor="let whatToDo of job.what_to_do.split(';')">{{whatToDo}}</p>
+                </div>
+
+                <div *ngIf="job.result_to_work_desc">
+                    <h5>რა შედეგებს უნდა მიაღწიო</h5>
+                    <p>{{job.result_to_work_desc}}</p>
+                </div>
+                
+                <div *ngIf="job.VacancyCategoryList">
+                    <h5>დეტალები</h5>
+                    <p class="mb-3" *ngFor="let categoryList of job.VacancyCategoryList">• {{categoryList}}</p>
+                </div>
+
+                <div *ngIf="job.additional_info">
+                    <h5>დამატებითი ინფორმაცია</h5>
+                    <p *ngFor="let additionalInfo of job.additional_info.split('\n\n')">{{additionalInfo}}</p>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="vacancy-info" role="tabpanel" aria-labelledby="pills-vacancy-info-tab">
+                <div *ngIf="job.VacancyReasonList">
+                    <h5>რატომ უნდა იმუშაო ჩვენს კომპანიაში?</h5>
+                    <p class="my-2" *ngFor="let reason of job.VacancyReasonList">• {{reason}}</p>
+                    <h6 class="fw-bold my-4">{{job.CompanyDetail.address}}</h6>
+                </div>
+            </div>
+        </div>
+    </div>

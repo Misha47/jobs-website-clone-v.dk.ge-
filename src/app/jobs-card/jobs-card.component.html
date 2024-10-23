@@ -1,0 +1,25 @@
+<div class="job-wrap d-flex justify-content-center flex-wrap gap-3 my-5" *ngIf="jobData">
+    <a class="card shadow-sm border border-1" *ngFor="let job of jobData.vacancy.data" href="details/{{job.id}}">
+        <div class="company">
+            <img [src]="job.CompanyDetail.logo" class="company-img">
+            <div>
+                <h6 class="title">{{job.PositionDetail.text}}</h6>
+                <p class="m-0">{{job.IndustryDetail.text}}</p>
+                <p class="m-0 text-primary">{{job.CompanyDetail.name}}</p>
+            </div>
+        </div>
+        <div class="detail-wrap">
+            <div class="detail-left">
+                <p class="detail-text"><i class="fa-solid fa-location-dot"></i>{{job.VacancyLocation.name}}</p>
+                <p class="detail-text" *ngIf="job.min_amount">₾ {{job.min_amount +" - "+ job.max_amount}}</p>
+                <p class="detail-text" *ngIf="job.fixed_amount">₾ {{job.fixed_amount}}</p>
+                </div>
+            <div class="detail-right">
+                <p *ngIf="job.work_experience === 3"><img src="https://dk.ge/img/experience-icon.50304fab.svg">საშუალო დონე</p>
+                <p *ngIf="job.work_experience === 1"><img src="https://dk.ge/img/experience-icon.50304fab.svg">გამოცდილების გარეშე</p>
+                <p *ngIf="job.work_experience === 4"><img src="https://dk.ge/img/experience-icon.50304fab.svg">პროფესიონალი</p>
+                <p><i class="fa-regular fa-clock"></i>{{job.WorkScheduleList.text}}</p>
+            </div>
+        </div>
+    </a>
+</div>

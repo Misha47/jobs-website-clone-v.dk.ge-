@@ -1,0 +1,23 @@
+h1{
+    
+}
+.theme-button{
+    position: relative;
+    height: 30px;
+    width: 70px;
+    border-radius: 50px;
+    padding: 5px;
+    cursor: pointer;
+}
+.fa-sun, .fa-moon{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+.fa-moon{
+    right: 10px;
+}
+.fa-democrat{
+    font-size: 2.5rem;
+}
